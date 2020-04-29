@@ -36,5 +36,8 @@ Assuming python and pip is installed in your system<br>
     DEBUG = env.bool('DEBUG',default=False)
   ```
 
-## 
+## Setup for Heroku Deployment
+### There are two parts to this
+PART 1 - Configuring the basics
+- `pipenv install gunicorn django_heroku` 
 
