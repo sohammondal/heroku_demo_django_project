@@ -1,0 +1,1 @@
+web: gunicorn heroku_demo_django_project.wsgi
