@@ -1,1 +1,1 @@
-web: gunicorn heroku_demo_django_project.wsgi
+web: gunicorn heroku_demo_django.wsgi
