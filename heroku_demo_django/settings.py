@@ -12,18 +12,22 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import django_heroku
+import environ
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+env = environ.Env()
+environ.Env.read_env()  # reading .env file
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY',default='=o)p$2&wd@%!x(@5^ujkb^g-di+t8zfk+h6g&6=notcy+7rq=$')
+SECRET_KEY = env.str('SECRET_KEY',default='=o)p$2&wd@%!x(@5^ujkb^g-di+t8zfk+h6g&6=notcy+7rq=$')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG',default=False)
+DEBUG = env.bool('DEBUG',default=False)
 
 ALLOWED_HOSTS = []
 
