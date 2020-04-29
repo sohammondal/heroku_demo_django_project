@@ -7,9 +7,16 @@ verify_ssl = true
 django-environ = "*"
 
 [packages]
-django = "*"
-gunicorn = "*"
-django-heroku = "*"
+gunicorn = "==20.0.4"
+django-heroku = "==0.3.1"
+asgiref = "==3.2.7"
+dj-database-url = "==0.5.0"
+django-environ = "==0.4.5"
+psycopg2 = "==2.8.5"
+pytz = "==2020.1"
+sqlparse = "==0.3.1"
+whitenoise = "==5.0.1"
+Django = "==3.0.5"
 
 [requires]
 python_version = "3.8"
