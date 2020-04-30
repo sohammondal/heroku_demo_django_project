@@ -39,10 +39,11 @@ Assuming python and pip are alreay installed in your system<br>
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = env.bool('DEBUG',default=False) 
   ```
+- Make sure to add the `.env` file in `.gitignore`
 
 ## Setup for Heroku Deployment
 
-PART 1 - Configuring the basics
+### PART 1 - Configuring the basics
 - Make sure you are currently in <MY_DJANGO_PROJECT>
 - `pipenv install gunicorn django_heroku`
 - `touch Procfile` Heroku web applications require a `Procfile`
@@ -67,7 +68,7 @@ PART 1 - Configuring the basics
   ```
 
 
-PART 2 - Configuring the static assets
+### PART 2 - Configuring the static assets
 - `pip install whitenoise` Django does not support serving static files in production. However, the fantastic WhiteNoise project can integrate into your Django application, and was designed with exactly this purpose in mind.
 - Make the following changes to <my_dj_project>/`settings.py`. Make sure to follow the instructions in comments -
 
@@ -104,13 +105,46 @@ PART 2 - Configuring the static assets
     
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
   ```
-- This is important. Deployment will fail in Heroku will fail w/o this
+- You can have a look at the entire [settings.py](https://github.com/sohammondal/heroku_demo_django_project/blob/master/heroku_demo_django/settings.py).
+  
+- This is important. Deployment in Heroku will fail w/o this
   - `mkdir static` Create a static folder in <MY_DJANGO_PROJECT>.
   - `touch static/.keep` A .keep file so that Git commits this folder as well
   - run `python manage.py collectstatic --noinput` to see if the command ran successfully otherwise fix errors.
 
 - stop the server and re-run it `python manage.py runserver [PORT]` to make sure the server is running smoothly
 
-PART 3 - 
+### PART 3 - Setup the Heroku environment
 
-- 
+Assuming you have heroku account & heroku cli installed in your system
+- `heroku login -i` login to your heroku account
+- `pip freeze > requirements.txt` in <MY_DJANGO_PROJECT> dir
+- Create the Heroku app
+  - `heroku create <my-heroku-app-name>` in <MY_DJANGO_PROJECT> dir
+  - `git remote -v` to confirm that a remote named heroku has been set for your app
+    ```bash
+      $ git remote -v
+        heroku  https://git.heroku.com/<my-heroku-app-name>.git (fetch)
+        heroku  https://git.heroku.com/<my-heroku-app-name>.git (push)
+    ```
+- For an existing Heroku app, set the git remote of your poject to the app git
+    ```bash
+      $ heroku git:remote -a <my-heroku-app-name>
+        set git remote heroku to https://git.heroku.com/<my-heroku-app-name>.git
+    ```
+- Set Heroku env varibales
+  
+  ```bash
+     $ heroku config:set SECRET_KEY="=o)p$2&wd@%!x(@5^ujkb^g-di+t8zfk+h6g&6=notcy+7rq=$"
+     $ heroku config:set DEBUG=True # turn this to false later
+  ```
+
+### PART 4 - Deploy the app
+- Checklist before deploying - 
+  - `Procfile`
+  - `requirements.txt`
+  - `Pipfile` & `Pipfile.lock`
+  - `static` dir
+  - all configurations committed
+- `git push heroku master` push the changes
+- `heroku logs -t` for viewing logs
