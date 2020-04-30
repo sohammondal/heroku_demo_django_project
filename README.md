@@ -148,3 +148,9 @@ Assuming you have heroku account & heroku cli installed in your system
   - all configurations committed
 - `git push heroku master` push the changes
 - `heroku logs -t` for viewing logs
+
+### Part 5 - Post build tasks
+- `heroku run bash` in <MY_DJANGO_PROJECT> dir to access the app shell environment on Heroku
+- `python manage.py makemigrations`
+- `python manage.py migrate`
+- And you are good to go 😃 👍⚡
