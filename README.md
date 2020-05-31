@@ -64,7 +64,7 @@ Assuming python and pip are alreay installed in your system<br>
     django_heroku.settings(locals())  # at the bottom of settings.py
   ```
 
-### PART 2 - Configuring the static assets
+#### PART 2 - Configuring the static assets
 - `pip install whitenoise` Django does not support serving static files in production. However, the fantastic WhiteNoise project can integrate into your Django application, and was designed with exactly this purpose in mind.
 - Make the following changes to <my_dj_project>/`settings.py`. Make sure to follow the instructions in comments -
 
@@ -108,7 +108,7 @@ Assuming python and pip are alreay installed in your system<br>
 
 - stop the server and re-run it `python manage.py runserver [PORT]` to make sure the server is running smoothly
 
-### PART 3 - Setup the Heroku environment
+#### PART 3 - Setup the Heroku environment
 
 Assuming you have heroku account & heroku cli installed in your system
 - `heroku login -i` login to your heroku account
@@ -133,7 +133,7 @@ Assuming you have heroku account & heroku cli installed in your system
      $ heroku config:set DEBUG=True # turn this to false later
   ```
 
-### PART 4 - Deploy the app
+#### PART 4 - Deploy the app
 - Checklist before deploying - 
   - `Procfile`
   - `requirements.txt`
@@ -143,7 +143,7 @@ Assuming you have heroku account & heroku cli installed in your system
 - `git push heroku master` push the changes
 - `heroku logs -t` for viewing logs
 
-### Part 5 - Post build tasks
+#### Part 5 - Post build tasks
 - `heroku run bash` in <MY_DJANGO_PROJECT> dir to access the app shell environment on Heroku
 - `python manage.py makemigrations`
 - `python manage.py migrate`
