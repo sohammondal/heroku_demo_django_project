@@ -43,7 +43,7 @@ Assuming python and pip are alreay installed in your system<br>
 
 ## Setup for Heroku Deployment
 
-### PART 1 - Configuring the basics
+#### PART 1 - Configuring the basics
 - Make sure you are currently in <MY_DJANGO_PROJECT>
 - `pipenv install gunicorn django_heroku`
 - `touch Procfile` Heroku web applications require a `Procfile`
